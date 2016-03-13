@@ -20,7 +20,7 @@ private:
     int m_day;
     int m_month;
     int m_year;
-    bool isValidFebruary(int day,int month)const{if(month!=2||(0<day&&day<29)){return 1;}return 0;}
+    bool isValidFebruary(int day,int month)const{if(month!=2||(day<29)){return 1;}return 0;}
     bool isValidDay(int day,int month);
     bool isValidMonth(int month);
     bool isValidYear(int year);

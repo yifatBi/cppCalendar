@@ -41,7 +41,7 @@ bool MyDate::isValidYear(int year) {
 bool MyDate::isValidDay(int day,int month) {
     if(!isValidFebruary(day,month)){
         std::cout<<"sorry dear February its a short month"<<std::endl;
-    }else if(day<1||day>31){
+    }else if(day<1||day>30){
         std::cout<< "the day is invalid"<<std::endl;
     }else{
         return 1;
@@ -104,11 +104,11 @@ void MyDate::changeDate(int day){
     MyDate febCheck;
     febCheck.set(28,2,m_year);
     bool isPrevBeforeFeb = isBefore(febCheck);
-    if(tempCalc<0){tempCalc = (31+tempCalc);changeMonth(-1);}
-    if(tempCalc%31==0)m_day=31;
-    else{m_day = abs(tempCalc%31);}
+    if(tempCalc<0){tempCalc = (30+tempCalc);changeMonth(-1);}
+    if(tempCalc%30==0)m_day=30;
+    else{m_day = abs(tempCalc%30);}
      if(tempCalc!=0) {
-         monthChange =(tempCalc / 31);
+         monthChange =(tempCalc / 30);
      }
     if(monthChange)changeMonth(monthChange);
 
