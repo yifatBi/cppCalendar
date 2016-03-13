@@ -20,6 +20,7 @@ private:
     int m_day;
     int m_month;
     int m_year;
+    std::string comment;
     bool isValidFebruary(int day,int month)const{if(month!=2||(day<29)){return 1;}return 0;}
     bool isValidDay(int day,int month);
     bool isValidMonth(int month);
@@ -39,6 +40,8 @@ public:
     void bringForward(int backDays);
     void print()const{std::cout<<m_day<<"/"<<m_month<<"/"<<m_year<<std::endl;}
     void changeDate(int day);
+    void changeComment(std::string str){comment.replace(comment.begin(), comment.end(), str);};
+    void printComment()const{ std::cout<<comment<<std::endl;};
     virtual ~MyDate();
 
 

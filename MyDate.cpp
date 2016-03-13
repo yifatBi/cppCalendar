@@ -105,15 +105,18 @@ void MyDate::changeDate(int day){
     febCheck.set(28,2,m_year);
     bool isPrevBeforeFeb = isBefore(febCheck);
     if(tempCalc<0){tempCalc = (30+tempCalc);changeMonth(-1);}
+    //If the updated days to change |30 then the day should be 30 else it will be the absolute modulo 30
     if(tempCalc%30==0)m_day=30;
     else{m_day = abs(tempCalc%30);}
+    //Calc the months change and update months if needed
      if(tempCalc!=0) {
          monthChange =(tempCalc / 30);
      }
     if(monthChange)changeMonth(monthChange);
 
+    //Check if the date is before February
      isCurrentBeforeFeb = isBefore(febCheck);
-    //if the feb check is false and the year has been changed
+    //If the feb check is false and the year has been changed
     //update the feb check according current year
     if(day>0&&!isPrevBeforeFeb&&m_year!=febCheck.m_year){
         febCheck.setYear(m_year);
@@ -141,9 +144,17 @@ void MyDate::changeDate(int day){
     }
 }
 void MyDate::delay(int shiftDays){
-    changeDate(shiftDays);
+    if(shiftDays<=365||shiftDays<=0) {
+        changeDate(shiftDays);
+    }else{
+        std::cout<<"You chose invalid num" << std::endl;
+    }
 }
 void MyDate::bringForward(int backDays) {
-    changeDate(backDays);
+    if(backDays<=365||backDays<=0) {
+        changeDate(-backDays);
+    }else{
+        std::cout<<"You chose invalid num" << std::endl;
+    }
 }
 

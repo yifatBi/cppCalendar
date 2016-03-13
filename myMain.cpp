@@ -46,6 +46,9 @@ int main() {
 //    date1.print();
 //}
 std::cout <<"Welcome to MyDate"<< std::endl;
+    char commant[]= "new comment";
+    date1.changeComment(commant);
+    date1.printComment();
             std::cout << "please enter day,month and year" << std::endl;
     cin >> day >>month >>year;
     while(day!=0){
