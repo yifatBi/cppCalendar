@@ -20,6 +20,8 @@
 #define ZERO_MIN 0
 #define MAX_MONTH_DAYS 30
 #define MIN_DAYS_NUM 1
+#define MAX_COMMENT_LENGTH 20
+#define MAX_SHIFT_DAYS 365
 
 MyDate::MyDate() {
 }
@@ -45,14 +47,11 @@ bool MyDate::isValidYear(int year) {
     return false;
 }
 bool MyDate::isValidDay(int day,int month) {
-    if(!isValidFebruary(day,month)){
-        std::cout<<"sorry dear February its a short month"<<std::endl;
-    }else if(day<=MIN_DAYS_NUM||day>MAX_MONTH_DAYS){
-        std::cout<< "the day is invalid"<<std::endl;
-    }else{
-        return true;
+    bool dayValid = day<MIN_DAYS_NUM|| day>MAX_MONTH_DAYS;
+    if((dayValid)||(!isValidFebruary(day,month))){
+        return false;
     }
-    return false;
+    return true;
 }
 
 bool MyDate::setDay(int day){
@@ -76,8 +75,8 @@ bool MyDate::setYear(int year){
     } 
     return false;
 }
-void MyDate::changeComment(char *str) {
-    if(strlen(str)<=20){
+void MyDate::changeComment(char* str) {
+    if(strlen(str)<=MAX_COMMENT_LENGTH){
          comment = new char[strlen(str)+1];
         stpcpy(comment,str);
     }
@@ -89,7 +88,6 @@ bool MyDate::set(int day, int month, int year){
         m_day=day;
         m_month=month;
         m_year=year;
-        std::cout<< "All data is Valid"<<std::endl;
         return true;
     }
     return false;
@@ -114,7 +112,7 @@ bool MyDate::isBefore(MyDate& dateCompare)const{
     return  (beforeInYears||beforeInMonths||beforeInDays);
 }
 
-void MyDate::changeDate(int day){
+bool MyDate::changeDate(int day){
     int tempCalc = m_day+day;
     int monthChange = -1;
     bool isCurrentBeforeFeb;
@@ -160,18 +158,29 @@ void MyDate::changeDate(int day){
         changeDate(tempCalc);
     }
 }
-void MyDate::delay(int shiftDays){
-    if(shiftDays<=365||shiftDays<=0) {
-        changeDate(shiftDays);
-    }else{
-        std::cout<<"You chose invalid num" << std::endl;
+bool MyDate::delay(int shiftDays){
+    if(0<=shiftDays&&shiftDays<=MAX_SHIFT_DAYS) {
+        return changeDate(shiftDays);
     }
+    return false;
+//    else{
+//        std::cout<<"You chose invalid num" << std::endl;
+//    }
 }
-void MyDate::bringForward(int backDays) {
-    if(backDays<=365||backDays<=0) {
-        changeDate(-backDays);
+bool MyDate::bringForward(int backDays) {
+    if(0<=backDays&&backDays<=MAX_SHIFT_DAYS) {
+        return changeDate(-backDays);
+    }
+    return false;
+//    else{
+//        std::cout<<"You chose invalid num" << std::endl;
+//    }
+}
+void  MyDate::printComment() const {
+    if(comment){
+        std::cout<<comment<<std::endl;
     }else{
-        std::cout<<"You chose invalid num" << std::endl;
+        std::cout<<"Not initialized yet";
     }
 }
 

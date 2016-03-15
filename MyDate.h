@@ -13,6 +13,9 @@
 
 #ifndef MYDATE_H
 #define MYDATE_H
+#define DAY_SUBMISSION  21
+#define MONTH_SUBMISSION  3
+#define YEAR_SUBMISSION  2016
 #include <iostream>
 
 class MyDate {
@@ -30,18 +33,18 @@ public:
     MyDate();
     MyDate(const MyDate& orig);
     bool changeMonth(int month);
-    void init(int day,int month,int year){m_day=day,m_month=month,m_year=year;}
-    bool set(int day,int month,int year);
+    void init(){set(DAY_SUBMISSION,MONTH_SUBMISSION,YEAR_SUBMISSION);};
+    bool set(const int day,const int month,const int year);
     bool setDay(int day);
     bool setMonth(int month);
     bool setYear(int year);
     bool isBefore(MyDate& dateCompare)const;
-    void delay(int shiftDays);
-    void bringForward(int backDays);
+    bool delay(int shiftDays);
+    bool bringForward(int backDays);
     void print()const{std::cout<<m_day<<"/"<<m_month<<"/"<<m_year<<std::endl;}
-    void changeDate(int day);
+    bool changeDate(int day);
     void changeComment(char* str);
-    void printComment()const{ std::cout<<comment<<std::endl;};
+    void printComment()const;
     virtual ~MyDate();
 
 
