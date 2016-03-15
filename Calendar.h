@@ -5,21 +5,23 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 
-#include <array>
 #include "MyDate.h"
+#define ARRAY_SIZE 30
 
 class Calendar {
 private:
-    MyDate* m_dates[30];
+    MyDate *m_dates[ARRAY_SIZE];
 public:
-    Calendar() ;
-    void setDate (int num, MyDate& my_date);
+    Calendar();
+    void setDate (int num, MyDate &my_date);
+    void printCell (int num)const;
     bool isFree(int num);
     int firstFree();
-    void insertDate(MyDate& my_date);
+    void fillAllWithVal(MyDate &my_date);
+    void deleteAll();
+    bool insert(MyDate& my_date);
     int oldest();
     int datesNum(MyDate& _mydate);
-    void deleteAll();
     void deleteDate(int num);
     void print();
 };

@@ -16,6 +16,8 @@
 using namespace std;
 
 #include "MyDate.h"
+#include "Calendar.h"
+
 #define BOOL_STR(b) ((b)?"true":"false")
 
 using namespace std;
@@ -29,6 +31,7 @@ int main() {
     MyDate date2;
     char invalidComment[] ="much much much longer";
     char validComment[] = "new comment";
+    ///test My Date
     cout<<"Test setYear :"<<endl;
     cout<<"set valid year 2000 expected return true----> actual return :"<<BOOL_STR(date1.setYear(2000))<<endl;
     cout<<"set invalid year 1899 expected return false----> actual return :"<<BOOL_STR(date1.setYear(1899))<<endl;
@@ -192,51 +195,69 @@ int main() {
     cout<<"expected date 29/12/1999 ------> actual return : ";
     date1.bringForward(2);
     date1.print();
+    cout<<"Test print :"<<endl;
+    date1.set(23,12,2007);
+    cout<<"expected 23/12/2007 ------> actual result : ";
+    date1.print();
+    //Test Calendar
+    Calendar calendar;
+    cout<<"Test Calendar :"<<endl;
+    cout<<"Test setDate :"<<endl;
+    cout<<"setDate(2,currentDate) current date : ";
+    date1.print();
+    cout<<"expected value in cell 2 is the same and the result------>";
+    calendar.setDate(2,date1);
+    calendar.printCell(2);
+    cout<<"Test printCall empty cell :"<<endl;
+    cout<<"expected 2 : this cell is empty ----------> actual result : ";
+    calendar.printCell(1);
+    cout<<"Test isFree : "<<endl;
+    cout<<"not free cell 2 expected result false -------> actual result "<<BOOL_STR(calendar.isFree(2))<<endl;
+    cout<<"Free cell 1 expected result true -------> actual result "<<BOOL_STR(calendar.isFree(1))<<endl;
+    cout<<"Test firstFree and fillAllWithVal: "<<endl;
+    cout<<"expected firstFree 1 --------> actual result "<<calendar.firstFree()<<endl;
+    calendar.fillAllWithVal(date1);
+    cout<<"after fill all with val expected firstFree 0 --------> actual result "<<calendar.firstFree()<<endl;
+    cout<<"Test deleteDateCell:"<<endl;
+    calendar.deleteDate(4);
+    cout<<"expected firstFree 5--------> actual result : "<<BOOL_STR(calendar.firstFree())<<endl;
+    cout<<"Insert to full dates array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
+    cout<<"Test insert and empty dates:"<<endl;
+    cout<<"Insert to full dates array expect result false --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
+    calendar.deleteAll();
+    cout<<"Insert to empty dates array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
+    cout<<"expected val in first cell result ";
+    date2.print();
+    cout<<"actual result ";
+    calendar.printCell(0);
 
-//     date1.set(29,2,2000);
-//     date1.set(29,2,190);
-//     date1.set(29,2,2500);
-//     date1.set(29,2,2000);
-//     date1.set(29,4,190);
-//     date1.set(29,4,2900);
-//     date1.set(29,4,2000);
-// date1.set(29,0,2000);
-// date1.set(29,42,2000);
-// date1.set(0,4,2000);
-// date1.set(32,4,2000);
-//while(day!=0){
-//    cout << "please enter day,month and year" << endl;
+
+//    calendar.setDate(2,date2);
+
+
+//cout <<"Welcome to MyDate"<< endl;
+//            cout << "please enter day,month and year" << endl;
 //    cin >> day >>month >>year;
-//    date1.set(day,month,year);
-//    date1.print();
-//     cout << "change month" << endl;
-//     cin >> month;
-//    date1.changeMonth(month);
-//    date1.print();
-//}
-cout <<"Welcome to MyDate"<< endl;
-            cout << "please enter day,month and year" << endl;
-    cin >> day >>month >>year;
-    while(day!=0){
-
-//            cin>>day;
-//            cout << "please enter month" << endl;
-//            cin>>month;
-//            cout << "please enter year" << endl;
-//            cin>>year;
-            if(date1.set(day,month,year)){
-                date1.print();
-                cout << "how you would like to change the days? (|365|)?" <<endl;
-                        cin >> day;
-                        date1.changeDate(day);
-                        date1.print();
-            };
-        cout << "please enter day,month and year" << endl;
-        cin >> day >>month >>year;
-    }
-
-
-    system("PAUSE");
+//    while(day!=0){
+//
+////            cin>>day;
+////            cout << "please enter month" << endl;
+////            cin>>month;
+////            cout << "please enter year" << endl;
+////            cin>>year;
+//            if(date1.set(day,month,year)){
+//                date1.print();
+//                cout << "how you would like to change the days? (|365|)?" <<endl;
+//                        cin >> day;
+//                        date1.changeDate(day);
+//                        date1.print();
+//            };
+//        cout << "please enter day,month and year" << endl;
+//        cin >> day >>month >>year;
+//    }
+//
+//
+//    system("PAUSE");
     return EXIT_SUCCESS;
 }
 
