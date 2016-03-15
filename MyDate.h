@@ -20,7 +20,7 @@ private:
     int m_day;
     int m_month;
     int m_year;
-    std::string comment;
+    char* comment;
     bool isValidFebruary(int day,int month)const{if(month!=2||(day<29)){return 1;}return 0;}
     bool isValidDay(int day,int month);
     bool isValidMonth(int month);
@@ -32,15 +32,15 @@ public:
     bool changeMonth(int month);
     void init(int day,int month,int year){m_day=day,m_month=month,m_year=year;}
     bool set(int day,int month,int year);
-    void setDay(int day);
-    void setMonth(int month);
+    bool setDay(int day);
+    bool setMonth(int month);
     bool setYear(int year);
     bool isBefore(MyDate& dateCompare)const;
     void delay(int shiftDays);
     void bringForward(int backDays);
     void print()const{std::cout<<m_day<<"/"<<m_month<<"/"<<m_year<<std::endl;}
     void changeDate(int day);
-    void changeComment(std::string str){comment.replace(comment.begin(), comment.end(), str);};
+    void changeComment(char* str);
     void printComment()const{ std::cout<<comment<<std::endl;};
     virtual ~MyDate();
 

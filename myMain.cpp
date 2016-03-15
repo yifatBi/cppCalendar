@@ -24,6 +24,16 @@ using namespace std;
 int main() {
     int day,month,year;
     MyDate date1;
+    std::cout<<"set valid year 2000:"<<date1.setYear(2000)<<std::endl;
+    std::cout<<"set invalid year 1899:"<<date1.setYear(1899)<<std::endl;
+    std::cout<<"set invalid year 2102:"<<date1.setYear(2102)<<std::endl;
+    std::cout<<"set invalid day -1:"<<date1.setDay(-1)<<std::endl;
+    std::cout<<"set invalid day 31:"<<date1.setDay(31)<<std::endl;
+    std::cout<<"set valid day 20:"<<date1.setDay(20)<<std::endl;
+    std::cout<<"set invalid month -2:"<<date1.setMonth(-2)<<std::endl;
+    std::cout<<"set invalid month 13:"<<date1.setMonth(13)<<std::endl;
+    std::cout<<"set valid month 2:"<<date1.setMonth(2)<<std::endl;
+    std::cout<<"set invalid February day 29:"<<date1.setDay(29)<<std::endl;
 //     date1.set(29,2,2000);
 //     date1.set(29,2,190);
 //     date1.set(29,2,2500);
