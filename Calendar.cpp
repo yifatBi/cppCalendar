@@ -11,14 +11,15 @@ Calendar::Calendar() { }
 void Calendar::setDate(int num, MyDate& my_date) {
     m_dates[num] = &my_date;
 }
-void Calendar::printCell(int num) const {
+void Calendar::printCell(const int num) const {
     cout<<num<<" : ";
-    if(m_dates[num]!= nullptr){
-        (*m_dates[num]).print();}else{
+    if(!isFree(num)){
+        (*m_dates[num]).print();
+    }else{
         cout<<"this cell is empty"<<endl;
     }
 }
-bool Calendar::isFree(int num) {
+bool Calendar::isFree(int num)const {
     if(0<=num&&num<=MEX_ARRAY_SIZE){
         return m_dates[num]== nullptr;
     }
@@ -41,7 +42,7 @@ void Calendar::deleteAll() {
     }
 }
 void Calendar::deleteDate(int num) {
-//    delete(m_dates[num]);
+//    delete m_dates[num];
     m_dates[num]= nullptr;
 }
 bool Calendar::insert(MyDate &my_date) {

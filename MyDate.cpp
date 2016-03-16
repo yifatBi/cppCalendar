@@ -22,6 +22,7 @@
 #define MIN_DAYS_NUM 1
 #define MAX_COMMENT_LENGTH 20
 #define MAX_SHIFT_DAYS 365
+#define FEBRUARY 2
 
 MyDate::MyDate() {
 }
@@ -77,8 +78,8 @@ bool MyDate::setYear(int year){
 }
 void MyDate::changeComment(char* str) {
     if(strlen(str)<=MAX_COMMENT_LENGTH){
-         comment = new char[strlen(str)+1];
-        stpcpy(comment,str);
+         m_comment = new char[strlen(str) + 1];
+        stpcpy(m_comment, str);
     }
 }
 bool MyDate::set(int day, int month, int year){
@@ -115,22 +116,33 @@ bool MyDate::isBefore(MyDate& dateCompare)const{
 bool MyDate::changeDate(int day){
     int tempCalc = m_day+day;
     int monthChange = -1;
+    bool returnVal = true;
     bool isCurrentBeforeFeb;
+    int prevDay = m_day;
+    int prevMonth = m_month;
+    int prevYear = m_year;
     MyDate febCheck;
-    febCheck.set(FEBRUARY_LENGTH, 2, m_year);
+    febCheck.set(FEBRUARY_LENGTH, FEBRUARY, m_year);
     bool isPrevBeforeFeb = isBefore(febCheck);
-    if(tempCalc<0){tempCalc = (MAX_MONTH_DAYS+tempCalc);changeMonth(-1);}
-    //If the updated days to change |30 then the day should be 30 else it will be the absolute modulo 30
+
+    //if go backward and more than current month days update the days and month
+    if(tempCalc<0){
+        tempCalc = (MAX_MONTH_DAYS+tempCalc);
+        returnVal=changeMonth(monthChange);
+    }
+
+    //If the updated days to change |maxDaysNum then the day should be maxDaysNum else it will be the absolute modulo maxDaysNum
     if(tempCalc%MAX_MONTH_DAYS==0)m_day=MAX_MONTH_DAYS;
     else{m_day = abs(tempCalc%MAX_MONTH_DAYS);}
-    //Calc the months change and update months if needed
+    //Calc the months change and update months if needed and update the return val
      if(tempCalc!=0) {
          monthChange =(tempCalc / MAX_MONTH_DAYS);
      }
-    if(monthChange)changeMonth(monthChange);
+    if(monthChange)returnVal=changeMonth(monthChange);
 
     //Check if the date is before February
      isCurrentBeforeFeb = isBefore(febCheck);
+
     //If the feb check is false and the year has been changed
     //update the feb check according current year
     if(day>0&&!isPrevBeforeFeb&&m_year!=febCheck.m_year){
@@ -155,30 +167,27 @@ bool MyDate::changeDate(int day){
     //Check if there was February between the months and if so call the function again with shift of 3 days
     else if(day>0&&isPrevBeforeFeb&&!isCurrentBeforeFeb||day<0&&!isPrevBeforeFeb&&isCurrentBeforeFeb) {
         tempCalc = day > 0 ? FEBRUARY_SHIFT : -FEBRUARY_SHIFT;
-        changeDate(tempCalc);
+        returnVal = changeDate(tempCalc);
     }
+    //if the updated date is invalid go back to the previous date
+    if(!returnVal)set(prevDay, prevMonth, prevYear);
+    return returnVal;
 }
 bool MyDate::delay(int shiftDays){
     if(0<=shiftDays&&shiftDays<=MAX_SHIFT_DAYS) {
         return changeDate(shiftDays);
     }
     return false;
-//    else{
-//        std::cout<<"You chose invalid num" << std::endl;
-//    }
 }
 bool MyDate::bringForward(int backDays) {
     if(0<=backDays&&backDays<=MAX_SHIFT_DAYS) {
         return changeDate(-backDays);
     }
     return false;
-//    else{
-//        std::cout<<"You chose invalid num" << std::endl;
-//    }
 }
 void  MyDate::printComment() const {
-    if(comment){
-        std::cout<<comment<<std::endl;
+    if(m_comment){
+        std::cout << m_comment << std::endl;
     }else{
         std::cout<<"Not initialized yet";
     }

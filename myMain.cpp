@@ -30,7 +30,7 @@ int main() {
     MyDate date1;
     MyDate date2;
     char invalidComment[] ="much much much longer";
-    char validComment[] = "new comment";
+    char validComment[] = "new m_comment";
     ///test My Date
     cout<<"Test setYear :"<<endl;
     cout<<"set valid year 2000 expected return true----> actual return :"<<BOOL_STR(date1.setYear(2000))<<endl;
@@ -48,17 +48,17 @@ int main() {
     cout<<"set month to January and check invalid day 31 expected return false----> actual return :"<<BOOL_STR(date1.setDay(31))<<endl;
     cout<<"set valid day 30 expected return false----> actual return :"<<BOOL_STR(date1.setDay(30))<<endl;
     cout<<"Test changeComment :"<<endl;
-    cout<<"change comment to: '"<<validComment<<"' length "<<strlen(validComment);
-    cout<<endl<<" current comment: "<<endl;
+    cout<<"change m_comment to: '"<<validComment<<"' length "<<strlen(validComment);
+    cout<<endl<<" current m_comment: "<<endl;
     date1.printComment();
     date1.changeComment(validComment);
-    cout<<"expected return new comment----> actual return :";
+    cout<<"expected return new m_comment----> actual return :";
     date1.printComment();
     date1.changeComment(invalidComment);
-    cout<<"change comment to invalid length comment : '"<<invalidComment<<"' length "<<strlen(invalidComment);
-    cout<<endl<<" current comment: "<<endl;
+    cout<<"change m_comment to invalid length m_comment : '"<<invalidComment<<"' length "<<strlen(invalidComment);
+    cout<<endl<<" current m_comment: "<<endl;
     date1.printComment();
-    cout<<"expected return new comment----> actual return :";
+    cout<<"expected return new m_comment----> actual return :";
     date1.printComment();
     cout<<"Test init function :"<<endl;
     date1.init();
@@ -140,6 +140,12 @@ int main() {
     cout<<"Test Delay :"<<endl;
     cout<<"delay with invalid num -2 : expect return false------> actual return :"<<BOOL_STR(date1.delay(-2))<<endl;
     cout<<"delay with invalid num 366 : expect return false------> actual return :"<<BOOL_STR(date1.delay(366))<<endl;
+    cout<<"delay in 2 days to invalid date : current date ";
+    date1.set(29,12,2100);
+    date1.print();
+    cout<<"expect return false------> actual return :"<<BOOL_STR(date1.delay(2))<<endl;
+    cout<<"expected date 29/12/2100--------> actual return : ";
+    date1.print();
     date1.set(1,1,2000);
     cout<<"delay days in same month delay with 5 days:"<<endl;
     cout<<"current Date : ";
@@ -169,6 +175,12 @@ int main() {
     cout<<"Test bringForword actualy go backword :"<<endl;
     cout<<"bringForword with invalid num -2 : expect return false------> actual return :"<<BOOL_STR(date1.bringForward(-2))<<endl;
     cout<<"bringForword with invalid num 366 : expect return false------> actual return :"<<BOOL_STR(date1.bringForward(366))<<endl;
+    cout<<"bringForword in 2 days to invalid date : current date ";
+    date1.set(1,1,1900);
+    date1.print();
+    cout<<"expect return false------> actual return :"<<BOOL_STR(date1.bringForward(2))<<endl;
+    cout<<"expected date 1/1/1900--------> actual return : ";
+    date1.print();
     date1.set(12,4,2000);
     cout<<"go past days in same month back with 5 days:"<<endl;
     cout<<"current Date : ";

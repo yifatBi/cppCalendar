@@ -14,8 +14,8 @@ private:
 public:
     Calendar();
     void setDate (int num, MyDate &my_date);
-    void printCell (int num)const;
-    bool isFree(int num);
+    void printCell (const int num)const;
+    bool isFree(int num)const;
     int firstFree();
     void fillAllWithVal(MyDate &my_date);
     void deleteAll();
