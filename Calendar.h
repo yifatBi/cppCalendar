@@ -11,6 +11,9 @@
 class Calendar {
 private:
     MyDate *m_dates[ARRAY_SIZE];
+    bool isEmpty()const;
+    int firstVal();
+    int lastVal();
 public:
     Calendar();
     void setDate (int num, MyDate &my_date);

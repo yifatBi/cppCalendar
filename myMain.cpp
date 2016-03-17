@@ -230,18 +230,33 @@ int main() {
     cout<<"expected firstFree 1 --------> actual result "<<calendar.firstFree()<<endl;
     calendar.fillAllWithVal(date1);
     cout<<"after fill all with val expected firstFree 0 --------> actual result "<<calendar.firstFree()<<endl;
-    cout<<"Test deleteDateCell:"<<endl;
+    cout<<"Test print full calendar ------> actual result ";
+    calendar.print();
+    cout<<"Test datesNum : "<<endl;
+    cout<<"expected 30---------> actual result "<<calendar.datesNum(date1)<<endl;
+    cout<<"expected oldest 1---------> actual result "<<calendar.oldest()<<endl;
+    cout<<"Test deleteDateCell call 4 has been deleted:"<<endl;
     calendar.deleteDate(4);
+    cout<<"expected datesNum 29---------> actual result "<<calendar.datesNum(date1)<<endl;
     cout<<"expected firstFree 5--------> actual result : "<<BOOL_STR(calendar.firstFree())<<endl;
-    cout<<"Insert to full dates array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
+    cout<<"Insert to one empty cell in array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
     cout<<"Test insert and empty dates:"<<endl;
     cout<<"Insert to full dates array expect result false --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
     calendar.deleteAll();
+    cout<<"Test print empty calendar expected:Empty Calendar------> actual result ";
+    calendar.print();
+    cout<<"expected oldest 0---------> actual result "<<calendar.oldest()<<endl;
+    cout<<"expected datesNum 0---------> actual result "<<calendar.datesNum(date1)<<endl;
     cout<<"Insert to empty dates array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
     cout<<"expected val in first cell result ";
     date2.print();
     cout<<"actual result ";
     calendar.printCell(0);
+    date1.setYear(1999);
+    calendar.setDate(19,date1);
+    cout<<"expected oldest 20---------> actual result "<<calendar.oldest()<<endl;
+    calendar.print();
+
 
 
 //    calendar.setDate(2,date2);
