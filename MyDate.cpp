@@ -10,6 +10,8 @@ Implementation of MyDate.h
  */
 
 #include "MyDate.h"
+#include <stdio.h>
+#include <string.h>
 #define min_year 1900
 #define max_year 2100
 #define FEBRUARY_SHIFT 2
@@ -160,7 +162,9 @@ bool MyDate::changeDate(int day){
         }
     }
     //Check if there was February between the months and if so call the function again with shift of 3 days
-    else if(day>0&&isPrevBeforeFeb&&!isCurrentBeforeFeb||day<0&&!isPrevBeforeFeb&&isCurrentBeforeFeb) {
+    else if((day>0&&
+            isPrevBeforeFeb&&
+            !isCurrentBeforeFeb)||(day<0&&!isPrevBeforeFeb&&isCurrentBeforeFeb)) {
         tempCalc = day > 0 ? FEBRUARY_SHIFT : -FEBRUARY_SHIFT;
         returnVal = changeDate(tempCalc);
     }
