@@ -1,11 +1,12 @@
 //
+// This class is implementation of Calendar.h
 // Created by yifat biezuner on 15/03/2016.
 //
 
 #include "Calendar.h"
-using namespace std;
 #define MEX_ARRAY_SIZE 30
 #define NOT_EXIST 0
+using namespace std;
 Calendar::Calendar() { }
 void Calendar::setDate(int num, MyDate& my_date) {
     m_dates[num] = &my_date;
@@ -97,7 +98,7 @@ int Calendar::oldest() {
                 }
             }
         }
-        return (indexCurrentOldest);
+        return (indexCurrentOldest+1);
     }
     return NOT_EXIST;
 }

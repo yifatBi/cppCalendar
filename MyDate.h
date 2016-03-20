@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+This Class handle Date and manipulate the date
  */
 
 /* 
@@ -20,30 +18,46 @@
 
 class MyDate {
 private:
-    int m_day;
-    int m_month;
-    int m_year;
-    char* m_comment;
-    bool isValidFebruary(int day,int month)const{if(month!=2||(day<29)){return 1;}return 0;}
+    int _day;
+    int _month;
+    int _year;
+    char* _comment;
+    //Given day and month and chak if the February is valid
+    bool isValidFebruary(int day,int month)const;
+    // Check the validity of the day
     bool isValidDay(int day,int month);
+    //Check the validity of the month
     bool isValidMonth(int month);
+    //Check the validity of the year
     bool isValidYear(int year);
 
 public:
     MyDate();
-    MyDate(const MyDate& orig);
+    //Change date with month according to the given number
     bool changeMonth(int month);
+    //Init the date with the submission date
     void init(){set(DAY_SUBMISSION,MONTH_SUBMISSION,YEAR_SUBMISSION);};
+    //Set the date according to given numbers if all valid
     bool set(const int day,const int month,const int year);
+    //set day if valid
     bool setDay(int day);
+    //set month if valid
     bool setMonth(int month);
+    //set year if valid
     bool setYear(int year);
+    //Check if the given date is before the current date
     bool isBefore(MyDate& dateCompare)const;
+    //Move the date in given days forward to the future
     bool delay(int shiftDays);
+    //Move the date in given days backward to the past
     bool bringForward(int backDays);
-    void print()const{std::cout<<m_day<<"/"<<m_month<<"/"<<m_year<<std::endl;}
+    //Print current day
+    void print()const{ std::cout << _day << "/" << _month << "/" << _year << std::endl;}
+    //Change date according to given days return if new date is valid and changed successfuly
     bool changeDate(int day);
+    // Update the comment if length is valid
     void changeComment(char* str);
+    // Print comment for check
     void printComment()const;
     virtual ~MyDate();
 

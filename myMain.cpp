@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+
  */
 
 /* 
@@ -13,8 +11,6 @@
 
 #include <cstdlib>
 #include <iostream>
-using namespace std;
-
 #include "MyDate.h"
 #include "Calendar.h"
 
@@ -26,11 +22,10 @@ using namespace std;
  * 
  */
 int main() {
-    int day,month,year;
     MyDate date1;
     MyDate date2;
     char invalidComment[] ="much much much longer";
-    char validComment[] = "new m_comment";
+    char validComment[] = "new _comment";
     ///test My Date
     cout<<"Test setYear :"<<endl;
     cout<<"set valid year 2000 expected return true----> actual return :"<<BOOL_STR(date1.setYear(2000))<<endl;
@@ -48,17 +43,17 @@ int main() {
     cout<<"set month to January and check invalid day 31 expected return false----> actual return :"<<BOOL_STR(date1.setDay(31))<<endl;
     cout<<"set valid day 30 expected return false----> actual return :"<<BOOL_STR(date1.setDay(30))<<endl;
     cout<<"Test changeComment :"<<endl;
-    cout<<"change m_comment to: '"<<validComment<<"' length "<<strlen(validComment);
-    cout<<endl<<" current m_comment: "<<endl;
+    cout<<"change _comment to: '"<<validComment<<"' length "<<strlen(validComment);
+    cout<<endl<<" current _comment: "<<endl;
     date1.printComment();
     date1.changeComment(validComment);
-    cout<<"expected return new m_comment----> actual return :";
+    cout<<" expected return new _comment----> actual return :";
     date1.printComment();
     date1.changeComment(invalidComment);
-    cout<<"change m_comment to invalid length m_comment : '"<<invalidComment<<"' length "<<strlen(invalidComment);
-    cout<<endl<<" current m_comment: "<<endl;
+    cout<<"change _comment to invalid length _comment : '"<<invalidComment<<"' length "<<strlen(invalidComment);
+    cout<<endl<<" current _comment: "<<endl;
     date1.printComment();
-    cout<<"expected return new m_comment----> actual return :";
+    cout<<"expected return new _comment----> actual return :";
     date1.printComment();
     cout<<"Test init function :"<<endl;
     date1.init();
@@ -79,7 +74,7 @@ int main() {
     cout<<"expected the day to be as is was inited 21/3/2016-----> actual result : ";
     date1.print();
     cout<<"set(30,12,2000) expected return true-----> actual return :"<< BOOL_STR(date1.set(30,12,2000))<<endl;
-    cout<<"set(12,2,2000) expected return true-----> actual return :"<< BOOL_STR(date1.set(12,2,2000))<<endl;
+    cout<<"set(12,2,2000) expected return true-----> actual return :"<< BOOL_STR(date1.set(12,2,2000))<<endl<<endl;
     cout<<"Test isBefore :"<<endl;
     date2.set(12,2,2000);
     cout<<"isBefore for 2 equal dates: ";
@@ -136,7 +131,7 @@ int main() {
     date1.print();
     cout<<"date2:";
     date2.print();
-    cout<<"expect return true------> actual return :"<<BOOL_STR(date1.isBefore(date2))<<endl;
+    cout<<"expect return true------> actual return :"<<BOOL_STR(date1.isBefore(date2))<<endl<<endl;
     cout<<"Test Delay :"<<endl;
     cout<<"delay with invalid num -2 : expect return false------> actual return :"<<BOOL_STR(date1.delay(-2))<<endl;
     cout<<"delay with invalid num 366 : expect return false------> actual return :"<<BOOL_STR(date1.delay(366))<<endl;
@@ -172,6 +167,7 @@ int main() {
     cout<<"expected date 2/1/2001 ------> actual return : ";
     date1.delay(2);
     date1.print();
+    cout<<endl;
     cout<<"Test bringForword actualy go backword :"<<endl;
     cout<<"bringForword with invalid num -2 : expect return false------> actual return :"<<BOOL_STR(date1.bringForward(-2))<<endl;
     cout<<"bringForword with invalid num 366 : expect return false------> actual return :"<<BOOL_STR(date1.bringForward(366))<<endl;
@@ -211,6 +207,7 @@ int main() {
     date1.set(23,12,2007);
     cout<<"expected 23/12/2007 ------> actual result : ";
     date1.print();
+    cout<<endl;
     //Test Calendar
     Calendar calendar;
     cout<<"Test Calendar :"<<endl;
@@ -221,8 +218,9 @@ int main() {
     calendar.setDate(2,date1);
     calendar.printCell(2);
     cout<<"Test printCall empty cell :"<<endl;
-    cout<<"expected 2 : this cell is empty ----------> actual result : ";
+    cout<<"expected 1 : this cell is empty ----------> actual result : ";
     calendar.printCell(1);
+    cout<<endl;
     cout<<"Test isFree : "<<endl;
     cout<<"not free cell 2 expected result false -------> actual result "<<BOOL_STR(calendar.isFree(2))<<endl;
     cout<<"Free cell 1 expected result true -------> actual result "<<BOOL_STR(calendar.isFree(1))<<endl;
@@ -230,16 +228,17 @@ int main() {
     cout<<"expected firstFree 1 --------> actual result "<<calendar.firstFree()<<endl;
     calendar.fillAllWithVal(date1);
     cout<<"after fill all with val expected firstFree 0 --------> actual result "<<calendar.firstFree()<<endl;
-    cout<<"Test print full calendar ------> actual result ";
+    cout<<"Test print full calendar ------> actual result "<<endl;
     calendar.print();
+    cout<<endl;
     cout<<"Test datesNum : "<<endl;
     cout<<"expected 30---------> actual result "<<calendar.datesNum(date1)<<endl;
     cout<<"expected oldest 1---------> actual result "<<calendar.oldest()<<endl;
     cout<<"Test deleteDateCell call 4 has been deleted:"<<endl;
     calendar.deleteDate(4);
     cout<<"expected datesNum 29---------> actual result "<<calendar.datesNum(date1)<<endl;
-    cout<<"expected firstFree 5--------> actual result : "<<BOOL_STR(calendar.firstFree())<<endl;
-    cout<<"Insert to one empty cell in array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
+    cout<<"expected firstFree 5--------> actual result : "<<(calendar.firstFree())<<endl;
+    cout<<"Insert to one empty cell in array expect result true --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl<<endl;
     cout<<"Test insert and empty dates:"<<endl;
     cout<<"Insert to full dates array expect result false --------> actual result "<<BOOL_STR(calendar.insert(date2))<<endl;
     calendar.deleteAll();
@@ -256,35 +255,6 @@ int main() {
     calendar.setDate(19,date1);
     cout<<"expected oldest 20---------> actual result "<<calendar.oldest()<<endl;
     calendar.print();
-
-
-
-//    calendar.setDate(2,date2);
-
-
-//cout <<"Welcome to MyDate"<< endl;
-//            cout << "please enter day,month and year" << endl;
-//    cin >> day >>month >>year;
-//    while(day!=0){
-//
-////            cin>>day;
-////            cout << "please enter month" << endl;
-////            cin>>month;
-////            cout << "please enter year" << endl;
-////            cin>>year;
-//            if(date1.set(day,month,year)){
-//                date1.print();
-//                cout << "how you would like to change the days? (|365|)?" <<endl;
-//                        cin >> day;
-//                        date1.changeDate(day);
-//                        date1.print();
-//            };
-//        cout << "please enter day,month and year" << endl;
-//        cin >> day >>month >>year;
-//    }
-//
-//
-//    system("PAUSE");
     return EXIT_SUCCESS;
 }
 
