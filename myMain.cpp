@@ -4,7 +4,7 @@
 
 /* 
  * File:   myMain.cpp
- * Author: yifatbiezuner
+ * Author: Yifat Biezuner
  *
  * Created on 08 March 2016, 17:54
  */

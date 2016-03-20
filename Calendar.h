@@ -1,6 +1,6 @@
 //
 // This class handle list of dates
-// Created by yifat biezuner on 13/03/2016.
+// Created by Yifat Biezuner on 13/03/2016.
 //
 
 #ifndef CALENDAR_H

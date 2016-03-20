@@ -4,7 +4,7 @@ This Class handle Date and manipulate the date
 
 /* 
  * File:   MyDate.h
- * Author: yifatbiezuner
+ * Author: Yifat Biezuner
  *
  * Created on 08 March 2016, 17:41
  */

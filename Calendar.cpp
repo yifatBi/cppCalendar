@@ -1,6 +1,6 @@
 //
 // This class is implementation of Calendar.h
-// Created by yifat biezuner on 15/03/2016.
+// Created by Yifat Biezuner on 15/03/2016.
 //
 
 #include "Calendar.h"
